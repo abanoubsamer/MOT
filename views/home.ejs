@@ -1,0 +1,220 @@
+
+<%- include("parts/header") %>
+
+<%- include("parts/nav") %>
+<link href="/css/font-face.css" rel="stylesheet" media="all">
+<!-- Fontfaces CSS-->
+<link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<!-- Bootstrap CSS-->
+<link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<!-- Vendor CSS-->
+<!-- Main CSS-->
+<link href="/css/admin.css" rel="stylesheet" media="all">
+
+
+
+<div class="container" style="margin-top: 0.5%;">
+<!-- PAGE CONTENT-->
+<div class="page-content--bgf7">
+  <!-- BREADCRUMB-->
+  <section class="au-breadcrumb2">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="au-breadcrumb-content">
+                    
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- END BREADCRUMB-->
+
+  <!-- WELCOME-->
+  <section class="welcome p-t-10">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <h1 class="title-7">Welcome back <span class="title-4"></span> </h1>
+                 
+               
+                  <hr class="line-seprate">
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- END WELCOME-->
+
+
+
+  
+<!-- STATISTIC-->
+<section class="statistic">
+<div class="section__content section__content--p30">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6 col-lg-3">
+              <div class="statistic__item">
+                  <h2 class="number"><%=Dashboard.totalinvestments%></h2>
+                  <span class="desc">Total Investments</span>
+                  <div class="icon">
+                      <i class="zmdi zmdi-account-o"></i>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+              <div class="statistic__item">
+                  <h2 class="number"><%=Dashboard.totalexpenses%></h2>
+                  <span class="desc">Total Expenss</span>
+                  <div class="icon">
+                      <i class="zmdi zmdi-shopping-cart"></i>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+              <div class="statistic__item">
+                  <h2 class="number"><%=Dashboard.totalrecenttransactions%></h2>
+                  <span class="desc">Recent Transactions</span>
+                  <div class="icon">
+                      <i class="zmdi zmdi-calendar-note"></i>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+              <div class="statistic__item">
+                  <h2 class="number">$<%=Dashboard.totalbudgets%></h2>
+                  <span class="desc">Total Budgets</span>
+                  <div class="icon">
+                      <i class="zmdi zmdi-money"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+<!-- END STATISTIC-->
+
+  <!-- DATA TABLE-->
+  <section  id="dataTableSection" class="p-t-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-5 m-b-35">Recent Transactions</h3>
+                <div class="table-data__tool">
+                        <div class="table-data__tool-left">
+                            <div class="rs-select2--light rs-select2--md">
+                                <select class="form-control address-select" name="property">
+                                    <option selected="selected">All Properties</option>
+                                    <option value="">Option 1</option>
+                                    <option value="">Option 2</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <div class="rs-select2--light rs-select2--sm">
+                                <select class="form-control address-select" name="time">
+                                    <option selected="selected">All</option>
+                                    <option value="1">Today</option>
+                                    <option value="2">2 Days</option>
+                                    <option value="7">Week</option>
+                                    <option value="30">Month</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <button class="au-btn-filter">
+                                <i class="zmdi zmdi-filter-list"></i>filters</button>
+                        </div>
+                    <form id="emailSearchForm" class="au-form-icon--sm">
+                        <input id="emailSearchInput" class="au-input--w300 au-input--style2" type="text" placeholder="Search for Email">
+                        <button id="emailSearchButton" class="au-btn--submit2" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                    
+                    
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>Type</th>
+                                <th>date</th>
+                                <th>status</th>
+                                <th>category</th>  
+                                <th>Amount</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <% for (let i = 0; i < Transactions.length ; i++) { %>
+                            <tr class="tr-shadow">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                             
+                                <td>
+                                    <span class="block-email"><%= Transactions[i].type %></span>
+                                </td>
+                               
+                                <td><%= Transactions[i].date.toLocaleDateString() %></td>
+                                <td>
+                                    <span class="status--process">Processed</span>
+                                </td>
+                                <td><%= Transactions[i].category %></td>
+                                
+                                <td>$<%= Transactions[i].amount %></td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                            <i class="zmdi zmdi-more"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END DATA TABLE-->
+
+<!-- COPYRIGHT-->
+<section class="p-t-60 p-b-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <p>Copyright © 2024 Colorlib.Personal Finance <a href="/">Personal Finance</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END COPYRIGHT-->
+</div>
+
+</div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/admin.js"></script>

@@ -1,0 +1,172 @@
+<%- include("parts/header") %>
+<link href="/css/font-face.css" rel="stylesheet" media="all">
+<!-- Fontfaces CSS-->
+<link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<!-- Bootstrap CSS-->
+<link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<!-- Vendor CSS-->
+<!-- Main CSS-->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <!-- all css here -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="css/prog/fontawesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/prog/progresscircle.css" rel="stylesheet" type="text/css" />
+    <link href="css/prog/style.css" rel="stylesheet" type="text/css" />
+    
+
+    <link rel="stylesheet" href="css/goaldate/style.css">
+    <link rel="stylesheet" href="css/goaldate/bootstrap-datetimepicker.min.css">
+
+
+<link rel="stylesheet" href="css/progrgoale.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/date/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="css/date/style.css">
+
+
+<link href="/css/admin.css" rel="stylesheet" media="all">
+<%- include("parts/nav") %>
+
+
+ <!-- WELCOME-->
+ <section class="welcome p-t-10">
+    <div class="container">
+        
+        <span class="au-breadcrumb-span">You are here:</span>
+        <ul class="list-unstyled list-inline au-breadcrumb__list">
+            <li class="list-inline-item active">
+                <a href="/home">Home</a>
+            </li>
+            <li class="list-inline-item seprate">
+                <span>/</span>
+            </li>
+            <li class="list-inline-item">Dashboard</li>
+        </ul>
+    </div>
+    
+</section>
+<!-- END WELCOME-->
+
+ <!-- FORM DATA-->
+<div class="col-lg-12">
+    <form id="myForm" action="/FinancialGoals" method="post">
+     <div class="card">
+        <div class="card-header">Financial Goals</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">Financial</h3>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="Product-Name" class="control-label mb-1">target amount</label>
+                <input type="number" name="target" id="target_amount" placeholder="target" class="form-control" required/>
+            </div>
+
+            <div class="form-group">
+                               
+                <% if (typeof errors !== 'undefined' && errors.text) { %>
+                    <p class="text-danger"><%= errors.text %></p>
+                <% } %>
+            </div>
+            <div class="form-group has-success">
+                <label for="status" class="control-label mb-1">Category</label>
+                <select id="category" name="category" class="form-control address-select" name="category" required>
+                    <option value="">Please Select</option>
+                    <option value="Income">Income</option>
+                    <option value="Interst">Interst</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="status" class="control-label mb-1">Date</label>
+                  <form action="" method="post" class="datepickers">
+                    <div class="form-group">
+                      <!-- <label class="label-control" for="id_start_datetime">Datetime picker</label> -->
+                      <div class="input-group date" id="id_0">
+                        <input type="text" name="date" id="date" value="" class="form-control" placeholder="MM/DD/YYYY hh:mm:ss" required/>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+            </div>
+
+            <div>  
+                 <!-- Button to submit the form -->
+                    <button onclick="updateData()"  type="submit" class="btn btn-lg btn-info btn-block">
+                        <!-- Hidden input field to hold the data -->
+                        <input type="hidden" id="newDataInput" name="newdata">
+                        <i class="zmdi zmdi-mail-send"></i>&nbsp;
+                        <span id="payment-button-amount">Save</span>
+                    </button>
+             </div>
+    
+        </div>
+    </div>
+</form>
+</div>
+<!-- END FORM DATA-->  
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% for (let i = 0; i < Financial.length; i++) { %>
+      <div class="col">
+        <div class="card h-80">
+          <div class="card-body text-center"> <!-- Center align the content -->
+            <h5 class="card-title"> <td><%= Financial[i].date.toLocaleDateString() %></td></h5>
+            <% if (Math.round(Financial[i].amount / Financial[i].target_amount * 100) < 100) { %>
+              <div class="circlechart" data-percentage="<%= Math.round(Financial[i].amount / Financial[i].target_amount * 100) %>"><%= Financial[i].category %></div>
+            <% } else { %>
+              <div class="circlechart" data-percentage="100"><%= Financial[i].category %></div>
+            <% } %>
+            <p class="card-text">
+              Target Amount -> <%= Financial[i].target_amount %><br>
+              Current Amount -> <%= Financial[i].amount %>
+            </p>
+            <div class="table-data-feature">
+              <form action="/FinancialGoals/delete/<%= Financial[i].goal_id %>" method="post">
+                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                  <i class="zmdi zmdi-delete"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+
+
+    <script src="/js/admin.js"></script>
+  
+  
+  <script src="js/goaldate/jquery.min.js"></script>
+  <script src="js/goaldate/popper.js"></script>
+  <script src="js/goaldate/bootstrap.min.js"></script>
+  <script src="js/goaldate/moment-with-locales.min.js"></script>
+  <script src="js/goaldate/bootstrap-datetimepicker.min.js"></script>
+  <script src="js/goaldate/main.js"></script>
+ 
+
+
+  <script src="js/date/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/progresscircle.js"></script>
+<script type="text/javascript">
+        
+        $(function(){
+
+          $('.circlechart').circlechart();
+
+        });
+
+    </script>
+

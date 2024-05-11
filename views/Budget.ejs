@@ -1,0 +1,156 @@
+
+<%- include("parts/header") %>
+<link href="/css/font-face.css" rel="stylesheet" media="all">
+<!-- Fontfaces CSS-->
+<link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<!-- Bootstrap CSS-->
+<link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<!-- Vendor CSS-->
+<!-- Main CSS-->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+
+    
+<link rel="stylesheet" href="css/date/classic.css">
+<link rel="stylesheet" href="css/date/classic.date.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/date/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="css/date/style.css">
+
+
+<link href="/css/admin.css" rel="stylesheet" media="all">
+<%- include("parts/nav") %>
+
+
+ <!-- WELCOME-->
+ <section class="welcome p-t-10">
+    <div class="container">
+        
+        <span class="au-breadcrumb-span">You are here:</span>
+        <ul class="list-unstyled list-inline au-breadcrumb__list">
+            <li class="list-inline-item active">
+                <a href="/">Home</a>
+            </li>
+            <li class="list-inline-item seprate">
+                <span>/</span>
+            </li>
+            <li class="list-inline-item">Dashboard</li>
+        </ul>
+    </div>
+    <% if (Budget.length <= 0) { %>
+</section>
+<!-- END WELCOME-->
+                        <!-- FORM DATA-->
+                        
+<div class="col-lg-12">
+    <form id="myForm" action="/Budget" method="post">
+     <div class="card">
+        <div class="card-header">Budget Management</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">Budget</h3>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="Product-Name" class="control-label mb-1">Amount</label>
+                <input type="number" name="Amount" id="Product-id" placeholder="Amount" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                
+               
+                <% if (typeof errors !== 'undefined' && errors.text) { %>
+                    <p class="text-danger"><%= errors.text %></p>
+                <% } %>
+            </div>
+            </div>
+
+         
+                <div>
+                    <!-- Button to submit the form -->
+                    <button onclick="updateData()" type="submit" class="btn btn-lg btn-info btn-block">
+                        <!-- Hidden input field to hold the data -->
+                        <input type="hidden" id="newDataInput" name="newdata">
+                        <i class="zmdi zmdi-mail-send"></i>&nbsp;
+                        <span id="payment-button-amount">Save</span>
+                    </button>
+                </div>
+          
+        </div>
+    </div>
+</form>
+</div>
+<!-- END FORM DATA-->  
+                      
+<%} else {%>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title mb-3">BUDGET</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="mx-auto d-block">
+                            <img class="rounded-circle mx-auto d-block" src="https://img.icons8.com/bubbles/100/000000/user.png" alt="Card image cap">
+                            <h5 class="text-sm-center mt-2 mb-1">Budget</h5>
+                            <div class="location text-sm-center">
+                                <%= Budget[0].amount %>
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-text text-sm-center">
+                            <a href="#">
+                                <i class="fa fa-facebook pr-1"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-twitter pr-1"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-linkedin pr-1"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-pinterest pr-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+                
+        
+        
+        
+                    
+
+
+        <!-- END DATA TABLE-->
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/moment-with-locales.min.js"></script>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
+  <script src="js/main.js"></script>  <div class="content">
+    
+   
+    
+    
+
+    <script src="js/date/jquery-3.3.1.min.js"></script>
+    <script src="js/date/popper.min.js"></script>
+    <script src="js/date/bootstrap.min.js"></script>
+    <script src="js/date/picker.js"></script>
+    <script src="js/date/picker.date.js"></script>
+
+    <script src="js/date/main.js"></script>

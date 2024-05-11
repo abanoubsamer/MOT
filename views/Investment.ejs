@@ -1,0 +1,157 @@
+
+<link href="/css/font-face.css" rel="stylesheet" media="all">
+<!-- Fontfaces CSS-->
+<link href="/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<!-- Bootstrap CSS-->
+<link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<!-- Vendor CSS-->
+<!-- Main CSS-->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+
+    
+<%- include("parts/header") %>
+
+
+<link rel="stylesheet" href="css/date/classic.css">
+<link rel="stylesheet" href="css/date/classic.date.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/date/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="css/date/style.css">
+
+
+<link href="/css/admin.css" rel="stylesheet" media="all">
+<%- include("parts/nav") %>
+
+
+ <!-- WELCOME-->
+ <section class="welcome p-t-10">
+    <div class="container">
+        
+        <span class="au-breadcrumb-span">You are here:</span>
+        <ul class="list-unstyled list-inline au-breadcrumb__list">
+            <li class="list-inline-item active">
+                <a href="/">Home</a>
+            </li>
+            <li class="list-inline-item seprate">
+                <span>/</span>
+            </li>
+            <li class="list-inline-item">Dashboard</li>
+        </ul>
+    </div>
+    
+</section>
+<!-- END WELCOME-->
+                        <!-- FORM DATA-->
+<div class="col-lg-12">
+    <form id="myForm" action="/Investment" method="post">
+     <div class="card">
+        <div class="card-header">Investment Management</div>
+        <div class="card-body">
+            <div class="card-title">
+                <h3 class="text-center title-2">Investment</h3>
+            </div>
+            <hr>
+            <div class="form-group has-success">
+                <label for="status" class="control-label mb-1">Type</label>
+                <select id="status" class="form-control address-select" name="Type" required>
+                    <option value="">Please Select</option>
+                    <% for (let i = 0; i < Investments.length; i++) { %>
+                        <option value="<%= Investments[i].inve_id %>">
+                         <%= Investments[i].type %> Return <%= Investments[i].return %>
+                        </option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Product-Name" class="control-label mb-1">Amount Invested</label>
+                <input type="text" id="Product-id" name="Amount" placeholder="Amount" class="form-control" required/>
+            </div>
+           
+            <div class="form-group">        
+               
+            </div>
+          
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="input_from">Date Invested</label>
+                      <input type="date" name="Date" class="form-control" id="input_from" placeholder="Date">
+                    </div>
+                </div>
+            </div>
+
+            <div>  
+                 <!-- Button to submit the form -->
+                    <button onclick="updateData()"  type="submit" class="btn btn-lg btn-info btn-block">
+                        <!-- Hidden input field to hold the data -->
+                        <input type="hidden" id="newDataInput" name="newdata">
+                        <i class="zmdi zmdi-mail-send"></i>&nbsp;
+                        <span id="payment-button-amount">Save</span>
+                    </button>
+             </div>
+    
+        </div>
+    </div>
+</form>
+</div>
+<!-- END FORM DATA-->  
+                         
+<div class="row m-t-30">
+    <div class="col-md-12">
+        <!-- DATA TABLE-->
+        <div class="table-responsive m-b-40" >
+            <table class="table table-data2" >
+                <thead >
+                    <tr>
+                        <th>Amount Invested</th>
+                        <th>type</th>
+                        <th>Return</th>
+                        <th>date</th>
+                        <th>status</th>
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < Investment.length ; i++) { %>
+                        <tr>
+                            <td><%= Investment[i].amount %></td>
+                            <td><%= Investment[i].type %></td>
+                            <td><%= Investment[i].return %></td>
+                            <td><%= Investment[i].date.toLocaleDateString() %></td>
+                            <td class="process">Processed</td>
+                        </tr>
+                        <% } %>
+             
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE-->
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/moment-with-locales.min.js"></script>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
+  <script src="js/main.js"></script>  <div class="content">
+    
+   
+    
+    
+
+    <script src="js/date/jquery-3.3.1.min.js"></script>
+    <script src="js/date/popper.min.js"></script>
+    <script src="js/date/bootstrap.min.js"></script>
+    <script src="js/date/picker.js"></script>
+    <script src="js/date/picker.date.js"></script>
+
+    <script src="js/date/main.js"></script>

@@ -14,6 +14,8 @@ check("email").isEmail().withMessage("i nvalid Email"),
 check("password").isLength({ min: 6, max: 20 }).withMessage("Password must be between 6 and 20 characters"),
 authcontroal.author_create_account);
 
+
+
 router.get('/login',auth_gured.notAuth,authcontroal.getlogin)
 
 router.post('/login',auth_gured.notAuth,body,authcontroal.author_login_account);

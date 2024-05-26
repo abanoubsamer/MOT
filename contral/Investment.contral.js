@@ -9,7 +9,7 @@ exports.GetInvestment =async (req, res, next) => {
         const all_transactions = querys.query_Investment.GET_ALL_INVES_QUERY;
         const result = await connect.query(createAccountQuery, [req.session.Budg_id]);
         const inves = await  connect.query(all_transactions);
-       
+       console.log(result.rows );
         // Render the 'Transactions' page with the retrieved transactions
         res.render('Investment', { Investment: result.rows 
             ,Investments:inves.rows
@@ -27,7 +27,10 @@ exports.GetInvestment =async (req, res, next) => {
             // Check if budget amount is sufficient
             const budgetCheckQuery = 'SELECT amount FROM public.finance_budget WHERE budg_id = $1';
             const budgetCheckResult = await connect.query(budgetCheckQuery, [req.session.Budg_id]);
-    
+
+
+
+                console.log(req.session.Budg_id);
             const currentBudgetAmount = budgetCheckResult.rows[0].amount;
             const investmentAmount = req.body.Amount;
             console.log(currentBudgetAmount +"         " +investmentAmount);
@@ -35,10 +38,8 @@ exports.GetInvestment =async (req, res, next) => {
                 // If budget amount is insufficient, return an error response
                 return res.status(400).send({ message: 'Insufficient budget amount' });
             }
-    
             // Decrease budget amount
             const decreaseBudgetQuery = 'UPDATE public.finance_budget SET amount = amount - $1 WHERE budg_id = $2';
-            console.log(budgetCheckResult.rows[0].amount);
             await connect.query(decreaseBudgetQuery, [investmentAmount, req.session.Budg_id]);
     
             // Create investment account

@@ -57,6 +57,7 @@ app.use('/FinancialGoals', FinancialRouter);
 app.use('/Investment', InvestmentRouter);
 app.use('/profile', ProfileRouter);
 
+
 app.listen(port, (err) => {
     if (err)
         console.log(err);
